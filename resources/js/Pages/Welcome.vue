@@ -13,8 +13,9 @@ defineProps({
 </script>
 
 <template>
-    <div class="sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-image" style="background-image: url('photos/background.png');">
-        <div v-if="canLogin" class="p-6 border-4 rounded-full bg-gray-700 z-10">
+    <div class="sm:flex sm:justify-center sm:items-center min-h-screen bg-center"
+        style="background-image: url('photos/background.png');">
+        <div v-if="canLogin" class="p-6 border-black border-2 rounded-full bg-gray-800 bg-opacity-60 z-10">
             <Link v-if="$page.props.auth.user" :href="route('dashboard')"
                 class="font-semibold text-gray-100 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm">
             Dashboard</Link>
@@ -28,11 +29,23 @@ defineProps({
                 Register</Link>
             </template>
         </div>
-    </div>
-
-    <div>
-        <div style="background-image: url('photos/astronauta.png');" class="z-100">
-
+        <div>
+            <img src="/photos/astronauta.png" alt="Astronauta" class="floating">
         </div>
     </div>
 </template>
+
+<style>
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.floating {
+    animation: floatAnimation 7s ease-in-out infinite;
+}
+</style>
