@@ -5,3 +5,9 @@
 [x-cloak] {
     display: none;
 }
+
+body {
+    /* Gradiente de fundo */
+    /* background: linear-gradient(135deg, #0A0A1F 0%, #302b63 50%, #24243e 100%); */
+}
+
