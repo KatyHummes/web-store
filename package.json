@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "laravel-precognition-vue": "^0.5.2",
-        "laravel-precognition-vue-inertia": "^0.5.2"
+        "laravel-precognition-vue-inertia": "^0.5.2",
+        "primevue": "^3.45.0"
     }
 }
