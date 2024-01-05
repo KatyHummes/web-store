@@ -33,5 +33,6 @@ const proximaFruta = () => {
                 <div v-if="activeTab === 3">INFANTIL</div>
                 <div v-if="activeTab === 4">PLUS SIZE</div>
             </div>
+        </div>
     </div>
 </template>

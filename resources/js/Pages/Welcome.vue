@@ -46,6 +46,6 @@ defineProps({
 }
 
 .floating {
-    animation: floatAnimation 7s ease-in-out infinite;
+    animation: floatAnimation 5s ease-in-out infinite;
 }
 </style>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +34,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('criar-produto', [ProductController::class, 'create'])->name('create.product');
+    Route::post('criar-produto', [ProductController::class, 'store'])->name('store.product');
+
     route::get('/teste', function () {
         return Inertia::render('Teste');
     })->name('teste');
