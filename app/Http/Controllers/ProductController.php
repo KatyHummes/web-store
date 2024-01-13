@@ -34,7 +34,12 @@ class ProductController extends Controller
                 ]);
             }
         }
-
     }
 
+    public function index() {
+        $produtos = Product::with('photos')->get();
+        return response()->json($produtos);
+    }
+    
+    
 }

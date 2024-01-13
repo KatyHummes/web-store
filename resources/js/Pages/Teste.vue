@@ -9,10 +9,11 @@ const proximaFruta = () => {
     const primeiraFruta = frutas.value.shift();
     frutas.value.push(primeiraFruta);
 };
+
 </script>
 
 <template>
-    <div class="relative sm:flex flex-col sm:justify-center sm:items-center min-h-screen bg-gradient-to-br from-deepblue via-spacepurple to-darkspace">
+    <div class="relative sm:flex flex-col sm:justify-center sm:items-center min-h-screen bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500">
        <!-- <div>frutas: {{ frutas }}</div> --> <h1>teste 2</h1>
         <div>
             fruta atual: {{ frutas[0] }}
@@ -34,5 +35,6 @@ const proximaFruta = () => {
                 <div v-if="activeTab === 4">PLUS SIZE</div>
             </div>
         </div>
+        
     </div>
 </template>

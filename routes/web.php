@@ -36,6 +36,8 @@ Route::middleware([
     })->name('dashboard');
     Route::get('criar-produto', [ProductController::class, 'create'])->name('create.product');
     Route::post('criar-produto', [ProductController::class, 'store'])->name('store.product')->middleware(HandlePrecognitiveRequests::class);
+    Route::get('/produtos', [ProductController::class, 'index'])->name('products');
+
 
     route::get('/teste', function () {
         return Inertia::render('Teste');
