@@ -53,7 +53,7 @@ const fileSelects = (event) => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div
-                    class="overflow-hidden shadow-xl sm:rounded-lg flex flex-row bg-gradient-to-r from-blue-700 via-violet-700 to-purple-700">
+                    class="overflow-hidden shadow-xl sm:rounded-lg flex flex-row bg-purple-500">
                     <div class="p-6">
                         <form @submit.prevent="submit">
 

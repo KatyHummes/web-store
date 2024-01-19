@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref, onMounted } from 'vue';
+import { Link, useForm } from '@inertiajs/vue3';
 
 const category = ref(1);
 
@@ -31,25 +32,20 @@ const getPhotoUrl = (path) => {
 
 <template>
     <AppLayout title="Dashboard">
-        <template #header>
-            <h2 class="font-medium font-serif text-2xl text-gray-800 leading-tight">
-                Home
-            </h2>
-        </template>
+      
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div
-                    class=" overflow-hidden shadow-xl sm:rounded-lg bg-purple-500">
+                <div class=" overflow-hidden shadow-xl sm:rounded-lg text-white bg-purple-500">
 
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 1">MASCULINO</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 2">FEMININO</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 3">INFANTIL</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 4">SPORT</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 5">PLUS SIZE</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 6">SAPATOS</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 7">BOLSAS</button>
-                    <button class="m-4 py-2 px-4 border rounded-full text-white" @click="category = 8">ACESSÓRIOS</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 1">MASCULINO</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 2">FEMININO</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 3">INFANTIL</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 4">SPORT</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 5">PLUS SIZE</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 6">SAPATOS</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 7">BOLSAS</button>
+                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 8">ACESSÓRIOS</button>
                 </div>
                 <div>
                     <div v-if="category === 1">MASCULINO</div>
@@ -64,13 +60,13 @@ const getPhotoUrl = (path) => {
                 <div
                     class="bg-white p-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 rounded-xl">
                     <div v-for="produto in produtos" :key="produto.id">
-                        <p>{{ produto.id }}</p>
+                        <Link :href="route('show.product', produto.id)">
+                            <img :src="getPhotoUrl(produto.photos[0].photo_path)" alt="Foto do Produto" class="rounded-xl">
+                     </Link>
+                       <div class="flex justify-around font-serif font-medium">
                         <h1>{{ produto.name }}</h1>
-                        <h2>{{ produto.price }}</h2>
-                        <div>
-                            <img :src="getPhotoUrl(produto.photos[0].photo_path)" alt="Foto do Produto" class="rounded-xl"
-                                @click="goToDetails(produto)">
-                        </div>
+                        <h2 class="text-red-500">{{ produto.price }}</h2>
+                       </div>
                     </div>
                 </div>
             </div>
