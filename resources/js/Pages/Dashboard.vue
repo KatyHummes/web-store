@@ -37,7 +37,6 @@ const getPhotoUrl = (path) => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class=" overflow-hidden shadow-xl sm:rounded-lg text-white bg-purple-500">
-
                     <button class="m-4 py-2 px-4 border rounded-full" @click="category = 1">MASCULINO</button>
                     <button class="m-4 py-2 px-4 border rounded-full" @click="category = 2">FEMININO</button>
                     <button class="m-4 py-2 px-4 border rounded-full" @click="category = 3">INFANTIL</button>
@@ -57,8 +56,7 @@ const getPhotoUrl = (path) => {
                     <div v-if="category === 7">BOLSAS</div>
                     <div v-if="category === 8">ACESSÓRIOS</div>
                 </div>
-                <div
-                    class="bg-white p-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 rounded-xl">
+                <div class="bg-white p-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 rounded-xl">
                     <div v-for="produto in produtos" :key="produto.id">
                         <Link :href="route('show.product', produto.id)">
                             <img :src="getPhotoUrl(produto.photos[0].photo_path)" alt="Foto do Produto" class="rounded-xl">

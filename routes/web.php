@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,13 +35,15 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('criar-produto', [ProductController::class, 'create'])->name('create.product');
-    Route::post('criar-produto', [ProductController::class, 'store'])->name('store.product')->middleware(HandlePrecognitiveRequests::class);
+
+    // Vendedor
+    Route::get('criar-produto', [SellerController::class, 'create'])->name('create.product');
+    Route::post('criar-produto', [SellerController::class, 'store'])->name('store.product')->middleware(HandlePrecognitiveRequests::class);
+    Route::put('editar-produto/{id}', [SellerController::class, 'update'])->name('update.product');
+    Route::delete('deletar-produto/{id}', [SellerController::class, 'destroy'])->name('destroy.product');
+
+    // Cliente
     Route::get('/produtos', [ProductController::class, 'index'])->name('products');
     route::get('/produto/{id}', [ProductController::class, 'show'])->name('show.product');
 
-
-    route::get('/teste', function () {
-        return Inertia::render('Teste');
-    })->name('teste');
 });
