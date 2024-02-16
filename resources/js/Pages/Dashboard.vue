@@ -3,6 +3,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref, onMounted } from 'vue';
 import { Link, useForm } from '@inertiajs/vue3';
 
+const props = defineProps({
+    user: Object
+});
+
 const category = ref(1);
 
 const produtos = ref([]);
@@ -31,7 +35,7 @@ const getPhotoUrl = (path) => {
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Dashboard" :user="user">
       
 
         <div class="py-12">
@@ -40,21 +44,11 @@ const getPhotoUrl = (path) => {
                     <button class="m-4 py-2 px-4 border rounded-full" @click="category = 1">MASCULINO</button>
                     <button class="m-4 py-2 px-4 border rounded-full" @click="category = 2">FEMININO</button>
                     <button class="m-4 py-2 px-4 border rounded-full" @click="category = 3">INFANTIL</button>
-                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 4">SPORT</button>
-                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 5">PLUS SIZE</button>
-                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 6">SAPATOS</button>
-                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 7">BOLSAS</button>
-                    <button class="m-4 py-2 px-4 border rounded-full" @click="category = 8">ACESSÓRIOS</button>
                 </div>
                 <div>
                     <div v-if="category === 1">MASCULINO</div>
                     <div v-if="category === 2">FEMININO</div>
                     <div v-if="category === 3">INFANTIL</div>
-                    <div v-if="category === 4">SPORT</div>
-                    <div v-if="category === 5">PLUS SIZE</div>
-                    <div v-if="category === 6">SAPATOS</div>
-                    <div v-if="category === 7">BOLSAS</div>
-                    <div v-if="category === 8">ACESSÓRIOS</div>
                 </div>
                 <div class="bg-white p-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 rounded-xl">
                     <div v-for="produto in produtos" :key="produto.id">

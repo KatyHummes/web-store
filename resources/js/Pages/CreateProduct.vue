@@ -4,6 +4,11 @@ import { useForm } from 'laravel-precognition-vue-inertia'
 import InputNumber from 'primevue/inputnumber';
 import Toast from 'primevue/toast';
 import { useToast } from "primevue/usetoast";
+import { Link } from '@inertiajs/vue3';
+
+const props = defineProps({
+    user: Object
+});
 
 const toast = useToast();
 
@@ -44,7 +49,7 @@ const fileSelects = (event) => {
 
 <template>
     <Toast />
-    <AppLayout title="Dashboard">
+    <AppLayout title="Dashboard" :user="user">
         <template #header>
             <h2 class="font-medium font-serif text-2xl text-gray-900 leading-tight">
                 Criar Produto
@@ -85,8 +90,10 @@ const fileSelects = (event) => {
 
                         </form>
                     </div>
-
                 </div>
+
+                <Link :href="route('show.seller', user.id)">Veja seus Produtos</Link>
+                <!-- veja seus produtos -->
             </div>
         </div>
     </AppLayout>

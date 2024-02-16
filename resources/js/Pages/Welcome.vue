@@ -16,7 +16,7 @@ defineProps({
     <div class="sm:flex sm:justify-center sm:items-center min-h-screen bg-center"
         style="background-image: url('photos/background.png');">
         <div v-if="canLogin" class="p-6 border-black border-2 rounded-full bg-gray-800 bg-opacity-60 z-10">
-            <Link v-if="$page.props.auth.user" :href="route('dashboard')"
+            <Link v-if="$page.props.auth.user.type.buyer" :href="route('dashboard')"
                 class="font-semibold text-gray-100 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm">
             Dashboard</Link>
             <template v-else>
