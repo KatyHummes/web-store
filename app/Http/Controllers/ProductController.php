@@ -9,9 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $user = auth()->user(); 
+        $user = auth()->user();
 
-        return Inertia::render('Dashboard',[
+        return Inertia::render('Dashboard', [
             'user' => $user
         ]);
     }
@@ -33,8 +33,8 @@ class ProductController extends Controller
             return Inertia::render('Product', [
                 'product' => $product
             ]);
-        }else{
-            return redirect('');
+        } else {
+            return redirect()->route('dashboard');
         }
     }
 }

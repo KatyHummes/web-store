@@ -31,8 +31,8 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () {   
-     // Vendedor
+])->group(function () {
+    // Vendedor
     Route::get('criar-produto', [SellerController::class, 'create'])->name('create.product');
     Route::post('criar-produto', [SellerController::class, 'store'])->name('store.product')->middleware(HandlePrecognitiveRequests::class);
     Route::get('loja-vendedor/{id}', [SellerController::class, 'show'])->name('show.seller');
@@ -40,7 +40,7 @@ Route::middleware([
     Route::delete('deletar-produto/{id}', [SellerController::class, 'destroy'])->name('destroy.product');
 
     // Cliente
-    Route::get('/produtos', [ProductController::class, 'products'])->name('products');
+    Route::get('/products', [ProductController::class, 'products'])->name('products');
     route::get('/produto/{id}', [ProductController::class, 'show'])->name('show.product');
     Route::get('/dashboard', [ProductController::class, 'index'])->name('dashboard');
 });

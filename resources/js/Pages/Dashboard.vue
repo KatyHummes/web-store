@@ -1,26 +1,30 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { ref, onMounted } from 'vue';
-import { Link, useForm } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
-    user: Object
+    user: Object,
 });
 
 const category = ref(1);
 
-const produtos = ref([]);
+const products = ref([]);
+
+console.log('products', products.value);
 
 onMounted(() => {
-    fetch('/produtos')
+    console.log('mounted');
+    fetch('/products')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao carregar os produtos');
+                throw new Error('Erro ao carregar os products');
             }
             return response.json();
         })
         .then(data => {
-            produtos.value = data;
+            products.value = data;
+            console.log('products2', products.value);
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -30,13 +34,12 @@ onMounted(() => {
 const getPhotoUrl = (path) => {
     return path ? `http://localhost:8000/storage/${path}` : 'https://via.placeholder.com/150';
 };
-
-
 </script>
 
 <template>
     <AppLayout title="Dashboard" :user="user">
-      
+
+        {{ products }}
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -51,14 +54,14 @@ const getPhotoUrl = (path) => {
                     <div v-if="category === 3">INFANTIL</div>
                 </div>
                 <div class="bg-white p-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 rounded-xl">
-                    <div v-for="produto in produtos" :key="produto.id">
-                        <Link :href="route('show.product', produto.id)">
-                            <img :src="getPhotoUrl(produto.photos[0].photo_path)" alt="Foto do Produto" class="rounded-xl">
-                     </Link>
-                       <div class="flex justify-around font-serif font-medium">
-                        <h1>{{ produto.name }}</h1>
-                        <h2 class="text-red-500">{{ produto.price }}</h2>
-                       </div>
+                    <div v-for="product in products" :key="product.id">
+                        <Link :href="route('show.product', product.id)">
+                        <img :src="getPhotoUrl(product.photos[0].photo_path)" alt="Foto do product" class="rounded-xl">
+                        </Link>
+                        <div class="flex justify-around font-serif font-medium">
+                            <h1>{{ product.name }}</h1>
+                            <h2 class="text-red-500">{{ product.price }}</h2>
+                        </div>
                     </div>
                 </div>
             </div>
