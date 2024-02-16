@@ -12,12 +12,13 @@ class SellerController extends Controller
     public function create()
     {
         $user = auth()->user();
-        // dd($user->type);
 
         if ($user->type == "seller") {
-            return Inertia::render('CreateProduct');
+            return Inertia::render('CreateProduct',[
+                'user' => $user
+            ]);
         } else {
-            return redirect()->route('dashboard');
+            return redirect()->route('Product');
         }
     }
 
@@ -25,6 +26,7 @@ class SellerController extends Controller
     {
         // dd($request->all());
         $product = Product::create([
+            'user_id' => auth()->user()->id,
             'name' => $request->name,
             'price' => $request->price
         ]);
@@ -41,12 +43,29 @@ class SellerController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        
+        $user = auth()->user();
+
+        $products = Product::with('photos')->where('user_id', $id)->get();
+
+        if ($user->type == "seller") {
+            return Inertia::render('Store', [
+                'products' => $products,
+                'user' => $user
+            ]);
+        } else {
+            return redirect()->route('Product');
+        }
+    }
+
     public function update($id)
     {
         $product = Product::find($id);
         $product->update([
             'name' => request('name'),
-            'price' => request('price')
+            'price' => request('price'),
         ]);
     }
 

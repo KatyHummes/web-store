@@ -10,6 +10,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 defineProps({
     title: String,
+    user: Object,
 });
 
 const showingNavigationDropdown = ref(false);
@@ -47,12 +48,16 @@ const logout = () => {
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex font-medium font-serif text-gray-800">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Home
-                                </NavLink>
+                            
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="user.type === 'seller'">
                                 <NavLink :href="route('create.product')" :active="route().current('create.product')">
-                                    Criar Produtos
+                                    Vendedor
+                                </NavLink>
+                            </div>
+                            
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" v-if="user.type === 'buyer'">
+                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    cliente
                                 </NavLink>
                             </div>
                         </div>
