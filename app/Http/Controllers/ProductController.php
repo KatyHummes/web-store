@@ -9,6 +9,15 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $user = auth()->user(); 
+
+        return Inertia::render('Dashboard',[
+            'user' => $user
+        ]);
+    }
+
+    public function products()
+    {
         $products = Product::with('photos')->get();
         return response()->json($products);
     }
@@ -18,8 +27,14 @@ class ProductController extends Controller
 
         $product = Product::with('photos')->find($id);
 
-        return Inertia::render('Product', [
-            'product' => $product
-        ]);
+        $user = auth()->user();
+
+        if ($user->type == "buyer") {
+            return Inertia::render('Product', [
+                'product' => $product
+            ]);
+        }else{
+            return redirect('');
+        }
     }
 }
